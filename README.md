@@ -9,7 +9,7 @@
 
 ## Overview
 
-As LLMs become more powerful, defending them against adversarial prompts is a growing challenge. Jailbreak attacks do not rely on obvious keywords — they exploit complex linguistic strategies, indirect instructions, and social engineering to disguise malicious intent inside seemingly legitimate requests.
+As LLMs become more powerful, defending them against adversarial prompts is a growing challenge. Jailbreak attacks do not rely on obvious keyword, they exploit complex linguistic strategies, indirect instructions, and social engineering to disguise malicious intent inside seemingly legitimate requests.
 
 This project systematically analyzes and classifies malicious prompts with a **two-level methodology**, comparing a surface-level statistical approach with a deep semantic one. The goal is to understand *how* attacks are structured and *which patterns they share*, a necessary foundation for building more adaptive defenses.
 
