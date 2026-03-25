@@ -1,55 +1,101 @@
-# Jailbreaking&LLM: Analisi a due livelli e classificazione famiglie di attacchi più frequenti
+# Jailbreaking & LLMs: Two-Level Analysis and Attack Family Classification
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue)
 ![Libraries](https://img.shields.io/badge/Libraries-Pandas%20%7C%20Scikit--Learn%20%7C%20Seaborn-brightgreen)
-![Hugging%20Face](https://img.shields.io/badge/Hugging%20Face-%F0%9F%A4%97-yellow)
-![](https://img.shields.io/badge/Transformer-all--MiniLM--L6--v2-orange)
+![Hugging Face](https://img.shields.io/badge/Hugging%20Face-🤗-yellow)
+![Transformer](https://img.shields.io/badge/Transformer-all--MiniLM--L6--v2-orange)
 
 ---
 
-## Introduzione e motivazioni
+## Overview
 
-L'obiettivo del presente progetto è analizzare un dataset di prompt e costruire
-un classificatore capace di distinguere tra **prompt safe** e **prompt malevoli**.
+As LLMs become more powerful, defending them against adversarial prompts is a growing challenge. Jailbreak attacks do not rely on obvious keywords — they exploit complex linguistic strategies, indirect instructions, and social engineering to disguise malicious intent inside seemingly legitimate requests.
 
-L'analisi confronta due approcci distinti:
+This project systematically analyzes and classifies malicious prompts with a **two-level methodology**, comparing a surface-level statistical approach with a deep semantic one. The goal is to understand *how* attacks are structured and *which patterns they share* — a necessary foundation for building more adaptive defenses.
 
-- **Approccio statistico** basato su feature strutturali del prompt  
-  (lunghezza, numero di parole, punteggiatura, keyword sospette, ecc.)
-- **Approccio semantico** basato su **embeddings**
+---
 
-Il progetto mostra come l'approccio semantico sia più efficace nel riconoscere prompt malevoli, riducendo significativamente i **false negatives** rispetto al modello basato su feature statistiche e come possa essere impiegato per classificare gli attacchi e renderli maggiormente riconoscibili come tali.
+## Methodology
 
+### Level 1 — Statistical Approach
+Classification based on structural and surface-level text features:
+- Prompt length, word count, punctuation density
+- Presence of suspicious keywords
+
+### Level 2 — Semantic Approach
+Classification based on **sentence embeddings** (`all-MiniLM-L6-v2` via Sentence Transformers):
+- Vector representations capturing the semantic intent of the prompt
+- Logistic regression classifier trained on embeddings
+- Focus on minimizing **false negatives** — undetected attacks are the critical failure mode in a security context
+
+### Attack Family Clustering
+Using the semantic embeddings, K-Means clustering is applied to the malicious prompts to discover whether jailbreak attacks organize themselves into semantically coherent **families** — groups of prompts sharing the same underlying strategy.
+
+---
+
+## Key Results
+
+| Model | Accuracy | False Negatives |
+|-------|----------|-----------------|
+| Statistical (surface features) | Low | Critically high |
+| Semantic (embeddings + LogReg) | **93%** | Drastically reduced |
+
+- The statistical model proved **inadequate for a security context**: easily bypassed and producing too many false negatives
+- The semantic model correctly intercepted indirect and "creative" attacks by reasoning on intent rather than form
+- Clustering revealed that jailbreak attacks are **not randomly distributed** — they cluster into distinct families, each with a specific manipulation strategy
+
+---
+
+## Connection to Current Research
+
+Recent literature (Peng et al., 2024 — *Rapid Response*) shows that the most effective defenses against jailbreaks do not rely on recognizing individual prompts, but on **rapidly responding to emerging attack strategies** by leveraging family-level knowledge.
+
+This project sits **upstream** of such mechanisms: the clustering analysis provides a structured understanding of attack families, forming a natural basis for jailbreak proliferation and family-aware defense strategies.
+
+---
 
 ## Workflow
-1. Pulizia e preparazione dei dati
-2. Analisi esplorativa (Exploratory Data Analysis)
-3. Primo livello di analisi (strutturale)
-4. Secondo livello di analisi (statistica)
-5. Clustering sugli embeddings
 
+```
+1. Data cleaning and preparation
+2. Exploratory Data Analysis (EDA)
+3. Level 1 — Statistical feature extraction and classification
+4. Level 2 — Semantic embedding and classification
+5. K-Means clustering on embeddings → attack family discovery
+```
+
+---
+
+## Tech Stack
+
+| Tool | Use |
+|------|-----|
+| Python | Core language |
+| Pandas, NumPy | Data manipulation |
+| Scikit-learn | Classification, clustering, metrics |
+| Matplotlib, Seaborn | Visualization |
+| Sentence Transformers (`all-MiniLM-L6-v2`) | Semantic embeddings |
+| Google Colab | Development environment |
 
 ---
 
-## Strumenti
-- Python ( Pandas, Numpy, Scikit-learn, Seaborn / Matplotlib )
-- Sentence Transformers (all-MiniLM-L6-v2)
+## Dataset
 
-## Risultati
-- Dimostrazione della superiorità del modello semantico
-- Individuazione di famiglie di attacchi jailbreak tramite clustering
+**Malicious Prompt Detection Dataset (MPDD)**
+~40k labeled prompts (safe / malicious) for detecting adversarial intent in AI inputs.
+[https://www.kaggle.com/datasets/mohammedaminejebbar/malicious-prompt-detection-dataset-mpdd](https://www.kaggle.com/datasets/mohammedaminejebbar/malicious-prompt-detection-dataset-mpdd)
 
 ---
-#### Fonti e bibliografia
-![Dataset](https://img.shields.io/badge/Dataset-Available-blue)![Papers](https://img.shields.io/badge/Papers-Cited-success)
-##### Malicious Prompt Detection Dataset (MPDD)
-Dataset of 40k prompts for detecting malicious intent in AI inputs
-https://www.kaggle.com/datasets/mohammedaminejebbar/malicious-prompt-detection-dataset-mpdd
 
-##### RAPID RESPONSE: MITIGATING LLM JAILBREAKS WITH A FEW EXAMPLES
-Alwin Peng, Julian Michael, Henry Sleight, Ethan Perez, Mrinank Sharma.
+## References
 
-https://arxiv.org/pdf/2411.07494
+Peng, A., Michael, J., Sleight, H., Perez, E., & Sharma, M. (2024).
+*Rapid Response: Mitigating LLM Jailbreaks with a Few Examples.*
+[https://arxiv.org/pdf/2411.07494](https://arxiv.org/pdf/2411.07494)
 
----
+...
 Laura Pala, Università di Bologna, Gennaio 2026
+
+---
+
+*Laura Pala — University of Bologna, January 2026*
