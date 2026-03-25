@@ -11,7 +11,7 @@
 
 As LLMs become more powerful, defending them against adversarial prompts is a growing challenge. Jailbreak attacks do not rely on obvious keywords — they exploit complex linguistic strategies, indirect instructions, and social engineering to disguise malicious intent inside seemingly legitimate requests.
 
-This project systematically analyzes and classifies malicious prompts with a **two-level methodology**, comparing a surface-level statistical approach with a deep semantic one. The goal is to understand *how* attacks are structured and *which patterns they share* — a necessary foundation for building more adaptive defenses.
+This project systematically analyzes and classifies malicious prompts with a **two-level methodology**, comparing a surface-level statistical approach with a deep semantic one. The goal is to understand *how* attacks are structured and *which patterns they share*, a necessary foundation for building more adaptive defenses.
 
 ---
 
@@ -26,10 +26,10 @@ Classification based on structural and surface-level text features:
 Classification based on **sentence embeddings** (`all-MiniLM-L6-v2` via Sentence Transformers):
 - Vector representations capturing the semantic intent of the prompt
 - Logistic regression classifier trained on embeddings
-- Focus on minimizing **false negatives** — undetected attacks are the critical failure mode in a security context
+- Focus on minimizing **false negatives**, undetected attacks are the critical failure mode in a security context
 
 ### Attack Family Clustering
-Using the semantic embeddings, K-Means clustering is applied to the malicious prompts to discover whether jailbreak attacks organize themselves into semantically coherent **families** — groups of prompts sharing the same underlying strategy.
+Using the semantic embeddings, K-Means clustering is applied to the malicious prompts to discover whether jailbreak attacks organize themselves into semantically coherent **families**, groups of prompts sharing the same underlying strategy.
 
 ---
 
@@ -42,7 +42,7 @@ Using the semantic embeddings, K-Means clustering is applied to the malicious pr
 
 - The statistical model proved **inadequate for a security context**: easily bypassed and producing too many false negatives
 - The semantic model correctly intercepted indirect and "creative" attacks by reasoning on intent rather than form
-- Clustering revealed that jailbreak attacks are **not randomly distributed** — they cluster into distinct families, each with a specific manipulation strategy
+- Clustering revealed that jailbreak attacks are **not randomly distributed**, they cluster into distinct families, each with a specific manipulation strategy
 
 ---
 
@@ -92,9 +92,6 @@ This project sits **upstream** of such mechanisms: the clustering analysis provi
 Peng, A., Michael, J., Sleight, H., Perez, E., & Sharma, M. (2024).
 *Rapid Response: Mitigating LLM Jailbreaks with a Few Examples.*
 [https://arxiv.org/pdf/2411.07494](https://arxiv.org/pdf/2411.07494)
-
-...
-Laura Pala, Università di Bologna, Gennaio 2026
 
 ---
 
