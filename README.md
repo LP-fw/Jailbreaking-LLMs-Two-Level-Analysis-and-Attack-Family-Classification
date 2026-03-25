@@ -17,12 +17,12 @@ This project systematically analyzes and classifies malicious prompts with a **t
 
 ## Methodology
 
-### Level 1 — Statistical Approach
+### Level 1 Statistical Approach
 Classification based on structural and surface-level text features:
 - Prompt length, word count, punctuation density
 - Presence of suspicious keywords
 
-### Level 2 — Semantic Approach
+### Level 2 Semantic Approach
 Classification based on **sentence embeddings** (`all-MiniLM-L6-v2` via Sentence Transformers):
 - Vector representations capturing the semantic intent of the prompt
 - Logistic regression classifier trained on embeddings
