@@ -1,2 +1,4 @@
-#### Nota sull'ambiente di esecuzione ⚠️
-##### Durante l'esecuzione del notebook può comparire un warning relativo all'assenza di alcune ottimizzazioni GPU **(Triton)**. Tale avviso non influisce sulla correttezza dei risultati né sulle prestazioni del modello in questo contesto, l'analisi è stata condotta in ambiente CPU-oriented e con modelli leggeri.
+#### Note on the execution environment ⚠️
+##### A warning about missing GPU optimizations **(Triton)** may appear during notebook execution. This does not affect the correctness of the results or model performance in this context — the analysis was conducted in a CPU-oriented environment using lightweight models.
+
+> **Note:** The notebook is being gradually translated into English...please be patient
