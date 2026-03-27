@@ -1,4 +1,4 @@
-# Jailbreaking & LLMs: Two-Level Analysis and Attack Family Classification
+# Jailbreaking & LLMs: two-level analysis and attack family Classification
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue)
 ![Libraries](https://img.shields.io/badge/Libraries-Pandas%20%7C%20Scikit--Learn%20%7C%20Seaborn-brightgreen)
